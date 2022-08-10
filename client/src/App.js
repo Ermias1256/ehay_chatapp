@@ -8,7 +8,7 @@ import Layout from "./pages/Layout";
 import PrivateRoutes from "./app/utils/PrivateRoutes";
 
 import "./App.css";
-import Test from "./pages/Test";
+import Chat from "./pages/Chat";
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -20,14 +20,13 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route element={<PrivateRoutes />}>
-              <Route index element={<Home />} />
+              <Route index element={<Chat />} />
             </Route>
             <Route
               path="login"
               exact
               element={!authToken ? <Login /> : <Navigate to="/" />}
             />
-            <Route path="xxx" exact element={<Test />} />
           </Route>
         </Routes>
       </BrowserRouter>
