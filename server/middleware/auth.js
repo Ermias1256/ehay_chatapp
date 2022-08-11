@@ -9,6 +9,7 @@ const auth = async (req, res, next) => {
 
     if (token && isCustomAuth) {
       decodedData = jwt.verify(token, "test");
+      console.log(decodedData);
       req.userId = decodedData.id;
     } else {
       decodedData = jwt.decode(token);
@@ -21,7 +22,7 @@ const auth = async (req, res, next) => {
 
     next();
   } catch (error) {
-    res.status(500).json({ message: "Error" });
+    res.status(500).json({ message: "Error1" });
   }
 };
 

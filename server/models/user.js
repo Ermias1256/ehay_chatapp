@@ -16,7 +16,7 @@ const userSchema = mongoose.Schema({
   allowedRoles: {
     //1001 - Admin, 1000 - User,
     type: [String],
-    default: ["1000"],
+    default: [],
   },
   userContacts: {
     //freinds of this user can chat with

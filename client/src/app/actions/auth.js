@@ -11,7 +11,7 @@ export const signin = (formData, navigate, from) => async (dispatch) => {
       dispatch({ type: END_LOADING });
       navigate(from, { replace: true });
     }
-    console.log({ data });
+
     return data;
   } catch (error) {
     console.log(error);

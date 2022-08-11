@@ -28,12 +28,14 @@ export const getFriends = async (req, res) => {
 
     // get friends
     const friendIds = existingUser.userContacts;
-    const freinds = ([{ _id: id, firstName, lastName, email }] =
-      await User.find({
-        $in: { friendIds },
-      }));
 
-    return res.status(200).json(freinds);
+    const [{ _id: id, name, email }] = await User.find({
+      _id: {
+        $in: friendIds,
+      },
+    });
+
+    return res.status(200).json([{ _id: id, name, email }]);
   } catch (error) {
     res.status(500).json("Something goes wrong.");
   }
