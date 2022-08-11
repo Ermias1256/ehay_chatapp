@@ -18,3 +18,6 @@ export const signIn = (formData) => API.post("/user/signin", formData);
 export const signUp = (formData) => API.post("/user/signup", formData);
 export const verifySignUp = (formData) =>
   API.post("/user/verifySignup", formData);
+
+// Messages
+export const getFriends = () => API.get("/message/getfriends");

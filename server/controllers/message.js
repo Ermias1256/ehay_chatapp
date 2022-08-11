@@ -6,6 +6,39 @@ import { getError } from "../utils/constants.js";
 
 const errorType = "MESSAGE";
 
+export const getFriends = async (req, res) => {
+  const userId = req.userId;
+
+  try {
+    if (!userId) {
+      return res.status(404).json(getError(1001));
+    }
+
+    //if valid user id
+
+    if (!Mongoose.Types.ObjectId.isValid(userId)) {
+      return res.status(404).json(getError(errorType, 2002));
+    }
+
+    // get user
+    const existingUser = await User.findById(userId);
+    if (!existingUser) {
+      return res.status(404).json(getError(2001));
+    }
+
+    // get friends
+    const friendIds = existingUser.userContacts;
+    const freinds = ([{ _id: id, firstName, lastName, email }] =
+      await User.find({
+        $in: { friendIds },
+      }));
+
+    return res.status(200).json(freinds);
+  } catch (error) {
+    res.status(500).json("Something goes wrong.");
+  }
+};
+
 export const getUserChats = async (req, res) => {
   const userId = req.userId; // the current user id
   const { chatWithId } = req.query; //friend
