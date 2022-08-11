@@ -1,6 +1,8 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
+import { getMessages } from "../app/actions/message";
 
 import { Friend, Messages, NewMessage } from "../components";
 

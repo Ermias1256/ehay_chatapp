@@ -43,7 +43,7 @@ export const getFriends = async (req, res) => {
 
 export const getUserChats = async (req, res) => {
   const userId = req.userId; // the current user id
-  const { chatWithId } = req.query; //friend
+  const { chatWithId } = req.params; //friend
   const page = req.query.p || 0;
   const limitPerPage = 20;
   const index = page * limitPerPage;

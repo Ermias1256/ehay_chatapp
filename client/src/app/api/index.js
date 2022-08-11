@@ -21,3 +21,5 @@ export const verifySignUp = (formData) =>
 
 // Messages
 export const getFriends = () => API.get("/message/getfriends");
+export const getUserChats = (id, page) =>
+  API.get(`/message/getUserChats/${id}?p=${page}`);
