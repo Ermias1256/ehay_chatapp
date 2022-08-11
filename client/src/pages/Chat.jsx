@@ -1,13 +1,26 @@
 import React from "react";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+
+import { Friend, Messages, NewMessage } from "../components";
 
 const Chat = () => {
+  const { id } = useParams();
+  const { friends: userFriends } = useSelector((state) => state.message);
+  const chatWithFriend = userFriends.find((friend) => friend._id === id);
   return (
-    <div>
-      <h1>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, nesciunt
-        similique neque aliquam animi placeat quod aspernatur ad excepturi quia
-        ipsum? Impedit totam quo est ipsa magnam corporis dicta nam!
-      </h1>
+    <div className="m-2 md:m-10 p-2 h-screen md:p-10 bg-white rounded-3xl">
+      <div>
+        <Friend chatWithFriend={chatWithFriend} />
+      </div>
+      <div className="flex flex-col h-4/5  justify-between ...">
+        <div>
+          <Messages />
+        </div>
+        <div>
+          <NewMessage />
+        </div>
+      </div>
     </div>
   );
 };

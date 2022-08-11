@@ -4,3 +4,7 @@ export { default as Navbar } from "./Navbar";
 export { default as Notification } from "./Notification";
 export { default as UserProfile } from "./UserProfile";
 export { default as Friends } from "./Friends";
+export { default as Friend } from "./Friend";
+export { default as Messages } from "./Messages";
+export { default as Message } from "./Message";
+export { default as NewMessage } from "./NewMessage";
