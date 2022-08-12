@@ -7,6 +7,9 @@ export const FETCH_ALL = "FETCH_ALL";
 export const FETCH_FRIENDS = "FETCH_FRIENDS";
 export const FETCH_BY_SEARCH = "FETCH_BY_SEARCH";
 
+export const FETCH_CHATS = "FETCH_CHATS";
+export const NEW_MESSAGE = "NEW_MESSAGE";
+
 export const START_LOADING = "START_LOADING";
 export const END_LOADING = "END_LOADING";
 

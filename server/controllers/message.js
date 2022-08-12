@@ -43,7 +43,7 @@ export const getFriends = async (req, res) => {
 
 export const getUserChats = async (req, res) => {
   const userId = req.userId; // the current user id
-  const { chatWithId } = req.params; //friend
+  const { chatWithId } = req.query; //friend
   const page = req.query.p || 0;
   const limitPerPage = 20;
   const index = page * limitPerPage;
@@ -79,9 +79,7 @@ export const newMessage = async (req, res) => {
   const textLimit = 200;
   const senderId = req.userId;
 
-  const receiverId = req.query.chatWithId;
-
-  const { messageText } = req.body;
+  const { receiverId, messageText } = req.body;
 
   if (!senderId) {
     return res.status(404).json(getError(errorType, 2001));
@@ -109,6 +107,8 @@ export const newMessage = async (req, res) => {
     if (!receiver) {
       return res.status(404).json(getError(errorType, 2004));
     }
+
+    // if receiver is not friend of sender , block the message
 
     const newMessage = await Message.create({
       messageText: messageText,
