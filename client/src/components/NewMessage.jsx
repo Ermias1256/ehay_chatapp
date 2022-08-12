@@ -19,7 +19,10 @@ const NewMessage = ({
 
   const sendMessage = (e) => {
     e.preventDefault();
+
     handleSubmit();
+
+    // e.input["messageText"].value = "";
   };
 
   return (

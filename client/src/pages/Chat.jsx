@@ -17,7 +17,7 @@ const initialMessage = {
 
 const Chat = () => {
   const [isConnected, setIsConnected] = useState(socket.connected);
-  const [lastPong, setLastPong] = useState(null);
+  const [lastMessage, setLastMessage] = useState(null);
   const [newMessage, setNewMessage] = useState(initialMessage);
 
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ const Chat = () => {
     });
 
     socket.on("chat message", (msg) => {
-      setLastPong(msg);
+      setLastMessage(msg);
     });
   }, []);
 
@@ -55,9 +55,9 @@ const Chat = () => {
       <div>{chatWithFriend && <Friend chatWithFriend={chatWithFriend} />}</div>
       <div className="flex flex-col h-3/5  justify-between ...">
         <div>
-          <p>Connected: {"" + isConnected}</p>
-          <p>Last pong: {lastPong || "-"}</p>
           <Messages />
+          <p>Connected: {"" + isConnected}</p>
+          <p>Last message: {lastMessage || "-"}</p>
         </div>
         <div>
           <NewMessage
