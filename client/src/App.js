@@ -1,14 +1,13 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
-import Login from "./pages/Login";
-import Home from "./pages/Login";
 import Layout from "./pages/Layout";
+import Login from "./pages/Login";
+import Chat from "./pages/Chat";
 
 import PrivateRoutes from "./app/utils/PrivateRoutes";
 
 import "./App.css";
-import Chat from "./pages/Chat";
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));

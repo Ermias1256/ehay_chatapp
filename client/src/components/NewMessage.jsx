@@ -1,15 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { createMessage } from "../app/actions/message";
 
-const initialMessage = {
-  receiverId: "",
-  messageText: "",
-};
-
-const NewMessage = ({ receiverId }) => {
+const NewMessage = ({
+  receiverId,
+  newMessage,
+  setNewMessage,
+  handleSubmit,
+}) => {
   const dispatch = useDispatch();
-  const [newMessage, setNewMessage] = useState(initialMessage);
 
   const handleChange = (e) => {
     setNewMessage({
@@ -19,14 +17,14 @@ const NewMessage = ({ receiverId }) => {
     });
   };
 
-  const handleSubmit = async (e) => {
+  const sendMessage = (e) => {
     e.preventDefault();
-    await dispatch(createMessage(newMessage));
+    handleSubmit();
   };
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={sendMessage}>
         <>
           <div className="mb-4">
             <input
