@@ -33,8 +33,11 @@ const Chat = () => {
       setIsConnected(false);
     });
 
+    socket.emit("join_room", id);
+
     socket.on("chat message", (msg) => {
       setLastMessage(msg);
+      dispatch(getUserChats(id, page));
     });
   }, []);
 
@@ -56,8 +59,8 @@ const Chat = () => {
       <div className="flex flex-col h-3/5  justify-between ...">
         <div>
           <Messages />
-          <p>Connected: {"" + isConnected}</p>
-          <p>Last message: {lastMessage || "-"}</p>
+          {/* <p>Connected: {"" + isConnected}</p>
+          <p>Last message: {lastMessage || "-"}</p> */}
         </div>
         <div>
           <NewMessage
