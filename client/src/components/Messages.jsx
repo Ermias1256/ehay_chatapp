@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import { Message } from ".";
-const Messages = ({ lastMessage }) => {
+
+const Messages = () => {
   const { chats: userChats, isLoading } = useSelector((state) => state.message);
 
   return (
@@ -18,7 +19,6 @@ const Messages = ({ lastMessage }) => {
       ) : (
         <p>No chats found.</p>
       )}
-      {!lastMessage && <div>{lastMessage}</div>}
     </div>
   );
 };

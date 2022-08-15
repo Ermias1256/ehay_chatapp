@@ -29,15 +29,15 @@ const Chat = () => {
       setIsConnected(true);
     });
 
-    socket.on("disconnect", () => {
-      setIsConnected(false);
-    });
-
     socket.emit("join_room", id);
 
     socket.on("chat message", (msg) => {
       setLastMessage(msg);
       dispatch(getUserChats(id, page));
+    });
+
+    socket.on("disconnect", () => {
+      setIsConnected(false);
     });
   }, []);
 
