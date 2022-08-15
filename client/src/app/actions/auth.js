@@ -1,7 +1,7 @@
 import { AUTH, START_LOADING, END_LOADING } from "../utils/actionTypes";
 import * as api from "../api";
 
-export const signin = (formData, navigate, from) => async (dispatch) => {
+export const signin = (formData) => async (dispatch) => {
   try {
     dispatch({ type: START_LOADING });
     const { data } = await api.signIn(formData);
@@ -9,7 +9,7 @@ export const signin = (formData, navigate, from) => async (dispatch) => {
     if (data.result.emailVerified) {
       dispatch({ type: AUTH, data });
       dispatch({ type: END_LOADING });
-      navigate(from, { replace: true });
+      // navigate(from, { replace: true });
     }
 
     return data;

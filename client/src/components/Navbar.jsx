@@ -38,7 +38,7 @@ const Navbar = () => {
     screenSize,
   } = useStateContext();
 
-  const user = JSON.parse(localStorage.getItem("profile"));
+  const user = JSON.parse(localStorage?.getItem("profile"));
 
   const authToken = user?.token;
   const userName = user?.result?.name;
@@ -79,7 +79,7 @@ const Navbar = () => {
         />
         {!authToken ? (
           <div className="flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg">
-            <Link to="/login">Login</Link>
+            <Link to="login">Login</Link>
           </div>
         ) : (
           <div

@@ -10,14 +10,14 @@ import { useDispatch } from "react-redux";
 import { getFriends } from "../app/actions/message";
 
 const Sidebar = () => {
-  const { currentColor, activeMenu, setActiveMenu, screenSize } =
+  const { currentColor, activeMenu, setActiveMenu, screenSize, authToken } =
     useStateContext();
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getFriends());
-  }, [activeMenu]);
+  }, [activeMenu, authToken]);
 
   const handleCloseSideBar = () => {
     if (activeMenu !== undefined && screenSize <= 900) {

@@ -8,7 +8,7 @@ import { signin, signup, verifySignup } from "../app/actions/auth";
 import { useStateContext } from "../contexts/ContextProvider";
 
 const Auth = () => {
-  const { authData, setAuthData } = useStateContext();
+  const { authData, setAuthData, setAuthToken } = useStateContext();
 
   const [isSignup, setIsSignup] = useState(false);
   const [isVerification, setIsVerification] = useState(false);
@@ -39,6 +39,10 @@ const Auth = () => {
       const data = await dispatch(signin(authData, navigate, fromLocation));
 
       if (data?.result) {
+        const user = JSON.parse(localStorage?.getItem("profile"));
+        setAuthToken(user?.token);
+        navigate("/", { replace: true });
+
         if (!data?.result?.emailVerified) {
           // prompt text box for entering activation code
           setIsVerification(true);

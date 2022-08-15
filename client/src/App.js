@@ -21,6 +21,7 @@ const App = () => {
             <Route element={<PrivateRoutes />}>
               <Route path=":id" element={<Chat />} />
             </Route>
+
             <Route
               path="login"
               exact

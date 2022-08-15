@@ -24,6 +24,8 @@ export const ContextProvider = ({ children }) => {
   const [activeMenu, setActiveMenu] = useState(false);
   const [isClicked, setIsClicked] = useState(initialState);
 
+  const [authToken, setAuthToken] = useState(null);
+
   const [authData, setAuthData] = useState(initialAuthState);
 
   const setMode = (e) => {
@@ -62,6 +64,9 @@ export const ContextProvider = ({ children }) => {
         handleClick,
         setMode,
         setColor,
+
+        authToken,
+        setAuthToken,
       }}
     >
       {children}
