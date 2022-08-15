@@ -58,7 +58,7 @@ const Chat = () => {
       <div>{chatWithFriend && <Friend chatWithFriend={chatWithFriend} />}</div>
       <div className="flex flex-col h-3/5  justify-between ...">
         <div>
-          <Messages lastMessage={lastMessage} />
+          <Messages />
         </div>
         <div>
           <NewMessage
