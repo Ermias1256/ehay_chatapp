@@ -36,10 +36,10 @@ const Navbar = () => {
     isClicked,
     setScreenSize,
     screenSize,
+    // authToken,
   } = useStateContext();
 
   const user = JSON.parse(localStorage?.getItem("profile"));
-
   const authToken = user?.token;
   const userName = user?.result?.name;
 

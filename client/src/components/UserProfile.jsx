@@ -11,7 +11,7 @@ const UserProfile = () => {
   return (
     <div className="nav-item absolute right-1 top-12 bg-light-gray dark:bg-[#42464D] p-4 rounded-lg w-82">
       <div className="flex justify-between items-center">
-        <p className="font-semibold text-lg dark:text-gray-200">User Profile</p>
+        <p className="font-semibold text-sm dark:text-gray-200">User Profile</p>
         <Button
           icon={<MdOutlineCancel />}
           color="rgb(153, 171, 180)"

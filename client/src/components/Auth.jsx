@@ -42,7 +42,6 @@ const Auth = () => {
         const user = JSON.parse(localStorage?.getItem("profile"));
         setAuthToken(user?.token);
         navigate("/", { replace: true });
-
         if (!data?.result?.emailVerified) {
           // prompt text box for entering activation code
           setIsVerification(true);
