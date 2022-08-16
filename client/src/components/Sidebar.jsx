@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { SiShopware } from "react-icons/si";
 import { MdOutlineCancel } from "react-icons/md";
+import { AiOutlineCancel, AiOutlineSearch } from "react-icons/ai";
 
 import { useStateContext } from "../contexts/ContextProvider";
 import { Friends } from ".";
@@ -48,6 +49,14 @@ const Sidebar = () => {
             </button>
           </div>
           <hr />
+          <div className="flex item-center my-2 mx-2">
+            <input
+              className="block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border-t-0 border-x-0 border-b-1 border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              type="text"
+              placeholder="search friends"
+              name="search"
+            />
+          </div>
           <div className="mt-7 ">
             <Friends />
           </div>
