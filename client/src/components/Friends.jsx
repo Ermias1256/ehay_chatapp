@@ -9,7 +9,7 @@ const Friends = () => {
   const { friends: userFriends } = useSelector((state) => state.message);
   const { currentColor, activeMenu, setActiveMenu, screenSize } =
     useStateContext();
-  console.log({ userFriends });
+
   const activeLink =
     "flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-gray-700 text-md m-2";
   const normalLink =

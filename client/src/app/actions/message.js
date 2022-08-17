@@ -27,7 +27,7 @@ export const getUserChats = (id, page) => async (dispatch) => {
     dispatch({ type: START_LOADING });
 
     const { data } = await api.getUserChats(id, page);
-    console.log({ data });
+
     dispatch({ type: FETCH_CHATS, data });
 
     dispatch({ type: END_LOADING });

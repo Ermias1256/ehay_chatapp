@@ -54,11 +54,11 @@ const Chat = () => {
   const chatWithFriend = userFriends.find((friend) => friend._id === id);
 
   return (
-    <div className="m-2 md:m-10 p-2 h-screen md:p-10 bg-white rounded-3xl">
+    <div className="m-2 md:m-4 p-2 h-screen md:p-5 bg-white rounded-3xl">
       <div>{chatWithFriend && <Friend chatWithFriend={chatWithFriend} />}</div>
-      <div className="flex flex-col h-3/5  justify-between ...">
-        <div>
-          <Messages />
+      <div className=" h-4/5 flex flex-col  justify-between p-5">
+        <div className=" overflow-y-auto md:hover:overflow-auto">
+          <Messages id={id} />
         </div>
         <div>
           <NewMessage
