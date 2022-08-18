@@ -31,8 +31,9 @@ const io = new Server(server, {
 });
 
 io.on("connection", (socket) => {
-  socket.on("join_room", (roomId) => {
+  socket.on("join room", (roomId) => {
     socket.join(roomId);
+    console.log(`User with Id : ${socket.id} joined room: ${roomId}`);
   });
 
   socket.on("chat message", (msg) => {

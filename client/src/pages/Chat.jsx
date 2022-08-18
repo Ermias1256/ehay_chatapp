@@ -29,7 +29,7 @@ const Chat = () => {
       setIsConnected(true);
     });
 
-    socket.emit("join_room", id);
+    socket.emit("join room", id);
 
     socket.on("chat message", (msg) => {
       setLastMessage(msg);
