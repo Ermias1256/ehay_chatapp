@@ -79,7 +79,7 @@ export const newMessage = async (req, res) => {
   const textLimit = 200;
   const senderId = req.userId;
 
-  const { receiverId, messageText } = req.body;
+  const { roomId, receiverId, messageText } = req.body;
 
   if (!senderId) {
     return res.status(404).json(getError(errorType, 2001));
@@ -111,6 +111,7 @@ export const newMessage = async (req, res) => {
     // if receiver is not friend of sender , block the message
 
     const newMessage = await Message.create({
+      roomId: roomId,
       messageText: messageText,
       receiver: receiverId,
       creator: senderId,
