@@ -25,14 +25,10 @@ const Chat = () => {
   const { id } = useParams();
   const page = 0;
 
-  const roomId = "Amu123";
-
   useEffect(() => {
     socket.on("connect", () => {
       setIsConnected(true);
     });
-
-    socket.emit("join room", roomId);
 
     socket.on("chat message", (msg) => {
       setLastMessage(msg);
@@ -61,7 +57,7 @@ const Chat = () => {
       <div>{chatWithFriend && <Friend chatWithFriend={chatWithFriend} />}</div>
       <div className=" h-4/5 flex flex-col  justify-between p-5">
         <div className=" overflow-y-auto md:hover:overflow-auto">
-          <Messages id={id} />
+          <Messages id={id} socket={socket} />
         </div>
         <div>
           <NewMessage

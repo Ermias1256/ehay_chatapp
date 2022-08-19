@@ -9,6 +9,7 @@ export const FETCH_BY_SEARCH = "FETCH_BY_SEARCH";
 
 export const FETCH_CHATS = "FETCH_CHATS";
 export const NEW_MESSAGE = "NEW_MESSAGE";
+export const NEW_ROOM = "NEW_MESSAGE";
 
 export const START_LOADING = "START_LOADING";
 export const END_LOADING = "END_LOADING";

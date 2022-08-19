@@ -8,6 +8,7 @@ import { Server } from "socket.io";
 import http from "http";
 
 import userRoutes from "./routes/user.js";
+import roomRoutes from "./routes/room.js";
 import messageRoutes from "./routes/message.js";
 
 dotenv.config();
@@ -20,6 +21,7 @@ app.use(express.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
 app.use("/user", userRoutes);
+app.use("/room", roomRoutes);
 app.use("/message", messageRoutes);
 
 const PORT = process.env.PORT || 5000;
