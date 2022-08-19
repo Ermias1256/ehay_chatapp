@@ -44,6 +44,8 @@ export const createMessage = (message) => async (dispatch) => {
     const { data } = await api.newMessage(message);
 
     dispatch({ type: NEW_MESSAGE, payload: data });
+
+    return data;
   } catch (error) {
     console.log(error);
   }

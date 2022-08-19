@@ -1,12 +1,16 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 
 const NewMessage = ({
   roomId,
+  setRoomId,
   receiverId,
   newMessage,
   setNewMessage,
   handleSubmit,
 }) => {
+  const dispatch = useDispatch();
+
   const handleChange = (e) => {
     setNewMessage({
       ...newMessage,
@@ -18,6 +22,14 @@ const NewMessage = ({
 
   const sendMessage = (e) => {
     e.preventDefault();
+
+    if (!roomId) {
+      setRoomId(dispatch(createRoom()).roomId);
+      setNewMessage({
+        ...newMessage,
+        roomId: roomId,
+      });
+    }
 
     handleSubmit();
   };
