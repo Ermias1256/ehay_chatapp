@@ -11,6 +11,7 @@ import { createMessage } from "../app/actions/message";
 const socket = io.connect("http://localhost:5000");
 
 const initialMessage = {
+  roomId: "",
   receiverId: "",
   messageText: "",
 };
@@ -24,12 +25,14 @@ const Chat = () => {
   const { id } = useParams();
   const page = 0;
 
+  const roomId = "Amu123";
+
   useEffect(() => {
     socket.on("connect", () => {
       setIsConnected(true);
     });
 
-    socket.emit("join room", id);
+    socket.emit("join room", roomId);
 
     socket.on("chat message", (msg) => {
       setLastMessage(msg);
@@ -47,7 +50,7 @@ const Chat = () => {
 
   const handleSubmit = async () => {
     await dispatch(createMessage(newMessage));
-    socket.emit("chat message", newMessage.messageText);
+    socket.emit("chat message", newMessage);
   };
 
   const { friends: userFriends } = useSelector((state) => state.message);
@@ -62,6 +65,7 @@ const Chat = () => {
         </div>
         <div>
           <NewMessage
+            roomId={roomId}
             receiverId={id}
             newMessage={newMessage}
             setNewMessage={setNewMessage}

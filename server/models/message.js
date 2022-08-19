@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 const messageSchema = mongoose.Schema({
+  roomId: { type: String, required: true },
   receiver: { type: String, required: true },
   messageText: {
     type: String,

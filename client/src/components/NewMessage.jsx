@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
 
 const NewMessage = ({
+  roomId,
   receiverId,
   newMessage,
   setNewMessage,
   handleSubmit,
 }) => {
-  const dispatch = useDispatch();
-
   const handleChange = (e) => {
     setNewMessage({
       ...newMessage,
+      roomId: roomId,
       receiverId: receiverId,
       messageText: e.target.value,
     });
@@ -21,8 +20,6 @@ const NewMessage = ({
     e.preventDefault();
 
     handleSubmit();
-
-    // e.input["messageText"].value = "";
   };
 
   return (
