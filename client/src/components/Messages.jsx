@@ -1,14 +1,12 @@
-import React, { useRef } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 
 import { Message } from ".";
 
 const Messages = ({ id }) => {
   const { chats: userChats, isLoading } = useSelector((state) => state.message);
-  const newMessageRef = useRef();
-  if (!userChats.length && !isLoading) return "No chat message";
 
-  // newMessageRef.current.scrollIntoView({ behavior: "smooth" });
+  if (!userChats.length && !isLoading) return "No chat message";
 
   return (
     <div>
@@ -19,7 +17,6 @@ const Messages = ({ id }) => {
               <Message message={message} id={id} />
             </div>
           ))}
-          {/* <div ref={newMessageRef} /> */}
         </div>
       ) : (
         <p>No chats found.</p>

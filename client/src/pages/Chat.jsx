@@ -1,20 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import io from "socket.io-client";
 
 import { getUserChats } from "../app/actions/message";
-import { createMessage } from "../app/actions/message";
 
 import { Friend, Messages, NewMessage } from "../components";
-import { useStateContext } from "../contexts/ContextProvider";
 
 const socket = io.connect("http://localhost:5000");
 
 const Chat = () => {
   const [isConnected, setIsConnected] = useState(socket.connected);
   const [lastMessage, setLastMessage] = useState(null);
+  const newMessageRef = useRef();
 
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -41,6 +40,8 @@ const Chat = () => {
     setIsConnected(false);
   });
 
+  newMessageRef.current?.scrollIntoView({ behavior: "smooth" });
+
   return (
     <div className="m-2 md:m-4 p-2 h-screen md:p-5 bg-white rounded-3xl">
       <div>{chatWithFriend && <Friend chatWithFriend={chatWithFriend} />}</div>
@@ -48,6 +49,7 @@ const Chat = () => {
       <div className=" h-4/5 flex flex-col  justify-between p-5">
         <div className=" overflow-y-auto md:hover:overflow-auto">
           <Messages id={id} />
+          <div ref={newMessageRef} />
         </div>
         <div>
           <NewMessage receiverId={id} socket={socket} />

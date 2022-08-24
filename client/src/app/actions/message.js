@@ -31,8 +31,6 @@ export const getUserChats = (id, page) => async (dispatch) => {
     dispatch({ type: FETCH_CHATS, data });
 
     dispatch({ type: END_LOADING });
-
-    return data;
   } catch (error) {
     console.log(error);
   }

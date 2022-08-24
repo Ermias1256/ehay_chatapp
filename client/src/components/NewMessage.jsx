@@ -7,6 +7,7 @@ const initialMessage = {
   receiverId: "",
   messageText: "",
 };
+
 const NewMessage = ({ receiverId, socket }) => {
   const dispatch = useDispatch();
   const { chats, isLoading } = useSelector((state) => state.message);
