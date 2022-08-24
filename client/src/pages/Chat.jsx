@@ -47,7 +47,7 @@ const Chat = () => {
 
       <div className=" h-4/5 flex flex-col  justify-between p-5">
         <div className=" overflow-y-auto md:hover:overflow-auto">
-          <Messages id={id} socket={socket} />
+          <Messages id={id} />
         </div>
         <div>
           <NewMessage receiverId={id} socket={socket} />

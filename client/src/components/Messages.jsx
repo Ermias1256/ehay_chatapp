@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 import { Message } from ".";
 
-const Messages = ({ id, socket }) => {
+const Messages = ({ id }) => {
   const { chats: userChats, isLoading } = useSelector((state) => state.message);
   const newMessageRef = useRef();
   if (!userChats.length && !isLoading) return "No chat message";
