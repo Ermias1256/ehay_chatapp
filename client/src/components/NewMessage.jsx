@@ -1,17 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createMessage } from "../app/actions/message";
 
-const initialMessage = {
-  roomId: "",
-  receiverId: "",
-  messageText: "",
-};
-
 const NewMessage = ({ receiverId, socket }) => {
-  const [newMessage, setNewMessage] = useState(initialMessage);
+  const initialMessage = {
+    roomId: "",
+    receiverId: "",
+    messageText: "",
+  };
   const dispatch = useDispatch();
   const { chats, isLoading } = useSelector((state) => state.message);
+  const msgTxt = "";
 
   let roomId = null;
 
@@ -21,16 +20,7 @@ const NewMessage = ({ receiverId, socket }) => {
   }
   console.log(roomId);
 
-  const handleChange = (e) => {
-    setNewMessage({
-      ...newMessage,
-      receiverId: receiverId,
-      roomId: roomId,
-      messageText: e.target.value,
-    });
-  };
-
-  const appendItem = (dispatch) =>
+  const saveMessage = (newMessage, dispatch) =>
     new Promise((resolve, reject) => {
       const msg = dispatch(createMessage(newMessage));
       resolve(msg);
@@ -39,12 +29,21 @@ const NewMessage = ({ receiverId, socket }) => {
   const sendMessage = async (e) => {
     e.preventDefault();
 
-    appendItem(dispatch).then((msg) => {
+    let newMessage = {
+      ...initialMessage,
+      receiverId: receiverId,
+      roomId: roomId,
+      messageText: e.target.value,
+    };
+
+    saveMessage(newMessage, dispatch).then((msg) => {
       if (!roomId) {
         roomId = msg.roomId;
       }
-      socket.emit("join room", roomId);
-      socket.emit("send message", msg);
+      if (roomId) {
+        socket.emit("join room", roomId);
+        socket.emit("send message", msg);
+      }
     });
   };
 
@@ -59,7 +58,6 @@ const NewMessage = ({ receiverId, socket }) => {
               id="messageText"
               name="messageText"
               placeholder="Send message"
-              onChange={handleChange}
             />
           </div>
         </>
