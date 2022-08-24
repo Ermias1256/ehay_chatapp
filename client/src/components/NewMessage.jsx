@@ -41,12 +41,15 @@ const NewMessage = ({ receiverId, socket }) => {
       if (!roomId) {
         roomId = msg.roomId;
       }
-
       if (roomId) {
         socket.emit("join room", roomId);
         socket.emit("send message", msg);
       }
     });
+
+    // clear input
+    let inputText = document.getElementById("messageText");
+    inputText.value = "";
   };
 
   return (
