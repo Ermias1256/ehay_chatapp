@@ -2,17 +2,17 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createMessage } from "../app/actions/message";
 
+const initialMessage = {
+  roomId: "",
+  receiverId: "",
+  messageText: "",
+};
 const NewMessage = ({ receiverId, socket }) => {
-  const initialMessage = {
-    roomId: "",
-    receiverId: "",
-    messageText: "",
-  };
   const dispatch = useDispatch();
   const { chats, isLoading } = useSelector((state) => state.message);
-  const msgTxt = "";
 
   let roomId = null;
+  let msgText = "";
 
   if (!isLoading && chats.length) {
     roomId = chats[0].roomId;
@@ -31,15 +31,16 @@ const NewMessage = ({ receiverId, socket }) => {
 
     let newMessage = {
       ...initialMessage,
-      receiverId: receiverId,
       roomId: roomId,
-      messageText: e.target.value,
+      receiverId: receiverId,
+      messageText: msgText,
     };
 
     saveMessage(newMessage, dispatch).then((msg) => {
       if (!roomId) {
         roomId = msg.roomId;
       }
+
       if (roomId) {
         socket.emit("join room", roomId);
         socket.emit("send message", msg);
@@ -58,6 +59,9 @@ const NewMessage = ({ receiverId, socket }) => {
               id="messageText"
               name="messageText"
               placeholder="Send message"
+              onChange={(e) => {
+                msgText = e.target.value;
+              }}
             />
           </div>
         </>
