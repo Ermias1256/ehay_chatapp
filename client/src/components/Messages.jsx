@@ -8,10 +8,6 @@ const Messages = ({ id, socket }) => {
   const newMessageRef = useRef();
   if (!userChats.length && !isLoading) return "No chat message";
 
-  // if (userChats.length > 0) {
-  //   socket.emit("join room", userChats[0].roomId);
-  // }
-
   // newMessageRef.current.scrollIntoView({ behavior: "smooth" });
 
   return (
