@@ -17,6 +17,7 @@ const messageError = [
   { code: 2007, message: "Message ID doesn't exist." },
   { code: 2008, message: "The user is not the creator of the message." },
   { code: 2009, message: "No message found with that id." },
+  { code: 2010, message: "Room Id not defined." },
 ];
 
 export const getError = (type, code, lang = "en") => {

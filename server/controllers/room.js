@@ -1,5 +1,6 @@
 import Room from "../models/room.js";
 import { getError } from "../utils/constants.js";
+import User from "../models/user.js";
 
 export const newRoom = async (req, res) => {
   const senderId = req.userId;

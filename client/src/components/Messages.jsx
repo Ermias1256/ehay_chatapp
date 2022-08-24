@@ -3,15 +3,14 @@ import { useSelector } from "react-redux";
 
 import { Message } from ".";
 
-const Messages = ({ id, setRoomId }) => {
+const Messages = ({ id, socket }) => {
   const { chats: userChats, isLoading } = useSelector((state) => state.message);
 
-  useEffect(() => {
-    // get room id
-    if (userChats?.length > 0) {
-      setRoomId(userChats[0].roomId);
-    }
-  }, [roomId]);
+  if (!userChats.length && !isLoading) return "No chat message";
+
+  if (userChats.length > 0) {
+    socket.emit("join room", userChats[0].roomId);
+  }
 
   return (
     <div>

@@ -20,7 +20,7 @@ const messageReducer = (
     case FETCH_CHATS:
       return { ...state, chats: action?.data };
     case NEW_MESSAGE:
-      return [...state, action?.payload];
+      return { ...state, messageData: action?.payload };
 
     default:
       return state;

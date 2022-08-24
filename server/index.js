@@ -38,9 +38,8 @@ io.on("connection", (socket) => {
     console.log(`User with Id : ${socket.id} joined room: ${roomId}`);
   });
 
-  socket.on("chat message", (msg) => {
-    io.to(msg.roomId).emit("chat message", msg);
-    console.log(msg);
+  socket.on("send message", (msg) => {
+    io.to(msg.roomId).emit("receive message", msg);
   });
 
   socket.on("disconnect", () => {
@@ -49,7 +48,7 @@ io.on("connection", (socket) => {
 });
 
 mongoose
-  .connect(process.env.CONNECTION_URL, {
+  .connect(process.env.CONNECTION_URL_LOCAL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })

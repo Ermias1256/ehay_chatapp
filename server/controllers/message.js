@@ -2,12 +2,16 @@ import Mongoose from "mongoose";
 
 import Message from "../models/message.js";
 import User from "../models/user.js";
+
 import { getError } from "../utils/constants.js";
 
 const errorType = "MESSAGE";
 
 export const getFriends = async (req, res) => {
   const userId = req.userId;
+  const page = req.query.p || 0;
+  const limitPerPage = 20;
+  const index = page * limitPerPage;
 
   try {
     if (!userId) {
@@ -33,7 +37,10 @@ export const getFriends = async (req, res) => {
       _id: {
         $in: friendIds,
       },
-    });
+    })
+      .sort({ name: 1 })
+      .limit(limitPerPage)
+      .skip(index);
 
     return res.status(200).json([{ _id: id, name, email }]);
   } catch (error) {
@@ -79,8 +86,11 @@ export const newMessage = async (req, res) => {
   const textLimit = 200;
   const senderId = req.userId;
 
-  const { roomId, receiverId, messageText } = req.body;
+  let { roomId, receiverId, messageText } = req.body;
 
+  roomId = roomId || req.roomId;
+
+  console.log({ roomId, receiverId, messageText });
   if (!senderId) {
     return res.status(404).json(getError(errorType, 2001));
   }
@@ -108,7 +118,7 @@ export const newMessage = async (req, res) => {
       return res.status(404).json(getError(errorType, 2004));
     }
 
-    // if receiver is not friend of sender , block the message
+    // TODO - if receiver is not friend of sender , block the message
 
     const newMessage = await Message.create({
       roomId: roomId,

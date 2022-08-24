@@ -1,37 +1,51 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { createMessage } from "../app/actions/message";
 
-const NewMessage = ({
-  roomId,
-  setRoomId,
-  receiverId,
-  newMessage,
-  setNewMessage,
-  handleSubmit,
-}) => {
+const initialMessage = {
+  roomId: "",
+  receiverId: "",
+  messageText: "",
+};
+
+const NewMessage = ({ receiverId, socket }) => {
+  const [newMessage, setNewMessage] = useState(initialMessage);
   const dispatch = useDispatch();
+  const { chats, isLoading } = useSelector((state) => state.message);
+
+  let roomId = null;
+
+  if (!isLoading && chats.length) {
+    roomId = chats[0].roomId;
+    socket.emit("join room", roomId);
+  }
+  console.log(roomId);
 
   const handleChange = (e) => {
     setNewMessage({
       ...newMessage,
-      roomId: roomId,
       receiverId: receiverId,
+      roomId: roomId,
       messageText: e.target.value,
     });
   };
 
-  const sendMessage = (e) => {
+  const appendItem = (dispatch) =>
+    new Promise((resolve, reject) => {
+      const msg = dispatch(createMessage(newMessage));
+      resolve(msg);
+    });
+
+  const sendMessage = async (e) => {
     e.preventDefault();
 
-    if (!roomId) {
-      setRoomId(dispatch(createRoom()).roomId);
-      setNewMessage({
-        ...newMessage,
-        roomId: roomId,
-      });
-    }
-
-    handleSubmit();
+    appendItem(dispatch).then((msg) => {
+      if (!roomId) {
+        roomId = msg.roomId;
+      }
+      socket.emit("join room", roomId);
+      socket.emit("send message", msg);
+    });
   };
 
   return (
