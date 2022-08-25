@@ -7,7 +7,7 @@ const Message = ({ message, id }) => {
   return (
     <div className={`mb-3 gap-3 p-3 flex items-center ${own}`}>
       <img className="rounded-full w-8 h-8" src={avatar} alt="user-profile" />
-      <p className="p-1 rounded-lg bg-blue-400 text-white mt-5 max-w-sm">
+      <p className="p-1 rounded-lg bg-blue-400 text-white max-w-sm">
         {message.messageText}
       </p>
     </div>
