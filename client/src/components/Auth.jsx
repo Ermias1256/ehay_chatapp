@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { GoogleLogin } from "react-google-login";
+// import { GoogleLogin } from "react-google-login";
 import { useDispatch } from "react-redux";
 
 import { signin, signup, verifySignup } from "../app/actions/auth";
@@ -64,23 +64,23 @@ const Auth = () => {
     setIsVerification(false);
   };
 
-  const googleSuccess = async (res) => {
-    const result = res?.profileObj;
-    const token = res?.tokenId;
+  // const googleSuccess = async (res) => {
+  //   const result = res?.profileObj;
+  //   const token = res?.tokenId;
 
-    try {
-      dispatch({ type: "AUTH", data: { result, token } });
+  //   try {
+  //     dispatch({ type: "AUTH", data: { result, token } });
 
-      navigate("/");
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  //     navigate("/");
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  const googleFailure = (error) => {
-    console.log(error);
-    console.log("Google Sign In was unsuccessful.");
-  };
+  // const googleFailure = (error) => {
+  //   console.log(error);
+  //   console.log("Google Sign In was unsuccessful.");
+  // };
   return (
     <section className="h-full gradient-form bg-gray-200 md:h-screen">
       <div className="container py-6 px-6 h-full">
@@ -206,26 +206,6 @@ const Auth = () => {
                             >
                               {isSignup ? "Sign Up" : "Sign In"}
                             </button>
-
-                            <GoogleLogin
-                              clientId={process.env.REACT_APP_CLIENT_ID}
-                              render={(renderProps) => (
-                                <div>
-                                  <button
-                                    type="button"
-                                    className="inline-block px-6 py-2.5 bg-blue-400 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full mb-3"
-                                    onClick={renderProps.onClick}
-                                    disabled={renderProps.disabled}
-                                  >
-                                    {/* <Icon /> */}
-                                    Google Sign In
-                                  </button>
-                                </div>
-                              )}
-                              onSuccess={googleSuccess}
-                              onFailure={googleFailure}
-                              cookiePolicy="single_host_origin"
-                            />
                           </div>
                         </>
                       )}
