@@ -25,6 +25,7 @@ export const ContextProvider = ({ children }) => {
   const [isClicked, setIsClicked] = useState(initialState);
 
   const [authToken, setAuthToken] = useState(null);
+  const [userName, setUserName] = useState("");
 
   const [authData, setAuthData] = useState(initialAuthState);
 
@@ -67,6 +68,8 @@ export const ContextProvider = ({ children }) => {
 
         authToken,
         setAuthToken,
+        userName,
+        setUserName,
       }}
     >
       {children}

@@ -1,9 +1,9 @@
 import React from "react";
 
-import { useStateContext } from "../contexts/ContextProvider";
-
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
+
+import { useStateContext } from "../contexts/ContextProvider";
 
 const Button = ({
   icon,
@@ -15,10 +15,12 @@ const Button = ({
   borderRadius,
   width,
 }) => {
-  const { setIsClicked, initialState, setAuthToken } = useStateContext();
+  const { setIsClicked, initialState, authToken, setAuthToken } =
+    useStateContext();
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const logout = () => {
     dispatch({ type: "LOGOUT" });

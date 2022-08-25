@@ -56,7 +56,6 @@ export const signin = async (req, res) => {
       {
         email: existingUser.email,
         id: existingUser._id,
-        roles: existingUser.roles,
       },
       "test",
       { expiresIn: "1h" }

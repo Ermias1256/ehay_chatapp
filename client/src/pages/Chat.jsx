@@ -12,7 +12,7 @@ const socket = io.connect("http://localhost:5000");
 
 const Chat = () => {
   const [isConnected, setIsConnected] = useState(socket.connected);
-  const [lastMessage, setLastMessage] = useState(null);
+
   const newMessageRef = useRef();
 
   const dispatch = useDispatch();
@@ -27,18 +27,19 @@ const Chat = () => {
 
   const chatWithFriend = userFriends.find((friend) => friend._id === id);
 
-  socket.on("connect", () => {
-    setIsConnected(true);
-  });
+  useEffect(() => {
+    socket.on("connect", () => {
+      setIsConnected(true);
+    });
 
-  socket.on("receive message", (msg) => {
-    setLastMessage(msg);
-    dispatch(getUserChats(id, page));
-  });
+    socket.on("receive message", () => {
+      dispatch(getUserChats(id, page));
+    });
 
-  socket.on("disconnect", () => {
-    setIsConnected(false);
-  });
+    socket.on("disconnect", () => {
+      setIsConnected(false);
+    });
+  }, []);
 
   newMessageRef.current?.scrollIntoView({ behavior: "smooth" });
 

@@ -12,7 +12,7 @@ import "./App.css";
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
   const authToken = user?.token;
-
+  console.log(authToken);
   return (
     <div>
       <BrowserRouter>
