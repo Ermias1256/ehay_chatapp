@@ -39,7 +39,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("send message", (msg) => {
-    io.to(msg.roomId).emit("receive message", msg);
+    if (msg?.roomId) io.to(msg.roomId).emit("receive message", msg);
   });
 
   socket.on("disconnect", () => {

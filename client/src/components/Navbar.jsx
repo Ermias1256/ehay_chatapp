@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import decode from "jwt-decode";
 
@@ -44,11 +44,27 @@ const Navbar = () => {
     setUserName,
   } = useStateContext();
 
+  const user = JSON.parse(localStorage.getItem("profile"));
   const dispatch = useDispatch();
   const location = useLocation();
-  const navigate = useNavigate();
 
-  const user = JSON.parse(localStorage?.getItem("profile"));
+  const logout = () => {
+    dispatch({ type: "LOGOUT" });
+    setAuthToken(null);
+  };
+  console.log(authToken);
+  useEffect(() => {
+    setAuthToken(user?.token);
+    setUserName(user?.result?.name);
+    // JWT ...
+    if (authToken) {
+      console.log("expiry check");
+      const decodedToken = decode(authToken);
+      if (decodedToken.exp * 1000 < new Date().getTime()) {
+        logout();
+      }
+    }
+  }, [location]);
 
   useEffect(() => {
     const handleResize = () => setScreenSize(window.innerWidth);
@@ -57,24 +73,6 @@ const Navbar = () => {
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
-  const logout = () => {
-    dispatch({ type: "LOGOUT" });
-    setAuthToken(null);
-    navigate("/login", { replace: true });
-  };
-
-  useEffect(() => {
-    setAuthToken(user?.token);
-    setUserName(user?.result?.name);
-    // JWT ...
-    if (authToken) {
-      const decodedToken = decode(authToken);
-      if (decodedToken.exp * 1000 < new Date().getTime()) {
-        logout();
-      }
-    }
-  }, [location]);
 
   useEffect(() => {
     if (screenSize <= 900) {

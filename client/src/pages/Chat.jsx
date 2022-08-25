@@ -47,7 +47,7 @@ const Chat = () => {
     <div className="m-2 md:m-4 p-2 h-screen md:p-5 bg-white rounded-3xl">
       <div>{chatWithFriend && <Friend chatWithFriend={chatWithFriend} />}</div>
 
-      <div className=" h-4/5 flex flex-col  justify-between p-5">
+      <div className=" h-4/5 flex flex-col gap-3  justify-between p-5">
         <div className=" overflow-y-auto md:hover:overflow-auto">
           <Messages id={id} />
           <div ref={newMessageRef} />
