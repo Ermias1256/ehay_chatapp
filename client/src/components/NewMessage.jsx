@@ -19,7 +19,6 @@ const NewMessage = ({ receiverId, socket }) => {
     roomId = chats[0].roomId;
     socket.emit("join room", roomId);
   }
-  console.log(roomId);
 
   const saveMessage = (newMessage, dispatch) =>
     new Promise((resolve, reject) => {

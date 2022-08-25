@@ -29,7 +29,7 @@ const PORT = process.env.PORT || 5000;
 const server = http.createServer(app);
 
 const io = new Server(server, {
-  cors: { origin: "http://localhost:3000", methods: ["GET", "POST"] },
+  cors: { origin: process.env.CLIENT_APP, methods: ["GET", "POST"] },
 });
 
 io.on("connection", (socket) => {
@@ -48,7 +48,7 @@ io.on("connection", (socket) => {
 });
 
 mongoose
-  .connect(process.env.CONNECTION_URL_LOCAL, {
+  .connect(process.env.CONNECTION_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })

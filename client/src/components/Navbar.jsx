@@ -52,7 +52,7 @@ const Navbar = () => {
     dispatch({ type: "LOGOUT" });
     setAuthToken(null);
   };
-  console.log(authToken);
+
   useEffect(() => {
     setAuthToken(user?.token);
     setUserName(user?.result?.name);
