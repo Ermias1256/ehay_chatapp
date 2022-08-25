@@ -1,6 +1,6 @@
 import axios from "axios";
 // const ENDPOINT_BASE_URL = process.env.REACT_APP_ENDPOINT_URL; // "http://localhost:5000";
-const ENDPOINT_BASE_URL = "http://localhost:5000";
+const ENDPOINT_BASE_URL = "https://ehay-chatapp.herokuapp.com";
 
 const API = axios.create({ baseURL: ENDPOINT_BASE_URL });
 

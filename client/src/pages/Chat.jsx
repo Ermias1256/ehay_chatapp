@@ -8,7 +8,7 @@ import { getUserChats } from "../app/actions/message";
 
 import { Friend, Messages, NewMessage } from "../components";
 
-const socket = io.connect("http://localhost:5000");
+const socket = io.connect("https://ehay-chatapp.herokuapp.com");
 
 const Chat = () => {
   const [isConnected, setIsConnected] = useState(socket.connected);
