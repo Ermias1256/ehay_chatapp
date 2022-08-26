@@ -25,12 +25,14 @@ app.use("/room", roomRoutes);
 app.use("/message", messageRoutes);
 
 const PORT = process.env.PORT || 5000;
-const CONNECTION_URL = process.env.LOCAL
-  ? process.env.CONNECTION_URL_LOCAL
-  : CONNECTION_URL;
-const CLIENT_APP = process.env.LOCAL
-  ? process.env.CLIENT_APP_LOCAL
-  : CLIENT_APP;
+const CONNECTION_URL =
+  process.env.LOCAL === "true"
+    ? process.env.CONNECTION_URL_LOCAL
+    : process.env.CONNECTION_URL;
+const CLIENT_APP =
+  process.env.LOCAL === "true"
+    ? process.env.CLIENT_APP_LOCAL
+    : process.env.CLIENT_APP;
 
 const server = http.createServer(app);
 
