@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import { useStateContext } from "../contexts/ContextProvider";
@@ -15,12 +15,11 @@ const Button = ({
   borderRadius,
   width,
 }) => {
-  const { setIsClicked, initialState, authToken, setAuthToken } =
-    useStateContext();
+  const { setIsClicked, initialState, setAuthToken } = useStateContext();
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const location = useLocation();
+  // const location = useLocation();
 
   const logout = () => {
     dispatch({ type: "LOGOUT" });

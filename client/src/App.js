@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import decode from "jwt-decode";
+// import { useDispatch } from "react-redux";
+// import decode from "jwt-decode";
 
 import Layout from "./pages/Layout";
 import Login from "./pages/Login";
@@ -13,27 +13,27 @@ import "./App.css";
 import { useStateContext } from "./contexts/ContextProvider";
 
 const App = () => {
-  const { authToken, setAuthToken, setUserName } = useStateContext();
-  const user = JSON.parse(localStorage.getItem("profile"));
-  const dispatch = useDispatch();
+  const { authToken } = useStateContext();
+  // const user = JSON.parse(localStorage.getItem("profile"));
+  // const dispatch = useDispatch();
 
-  const logout = () => {
-    dispatch({ type: "LOGOUT" });
-    setAuthToken(null);
-  };
+  // const logout = () => {
+  //   dispatch({ type: "LOGOUT" });
+  //   setAuthToken(null);
+  // };
 
-  useEffect(() => {
-    setAuthToken(user?.token);
-    setUserName(user?.result?.name);
-    // JWT ...
-    if (authToken) {
-      console.log("expiry check");
-      const decodedToken = decode(authToken);
-      if (decodedToken.exp * 1000 < new Date().getTime()) {
-        logout();
-      }
-    }
-  }, [authToken]);
+  // useEffect(() => {
+  //   setAuthToken(user?.token);
+  //   setUserName(user?.result?.name);
+  //   // JWT ...
+  //   if (authToken) {
+  //     console.log("expiry check");
+  //     const decodedToken = decode(authToken);
+  //     if (decodedToken.exp * 1000 < new Date().getTime()) {
+  //       logout();
+  //     }
+  //   }
+  // }, [authToken]);
 
   return (
     <div>
