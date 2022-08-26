@@ -29,7 +29,7 @@ const Button = ({
   const handleClick = () => {
     if (text === "Logout") {
       logout();
-      navigate("/login", { replace: true });
+      navigate("/login");
     }
     setIsClicked(initialState);
   };

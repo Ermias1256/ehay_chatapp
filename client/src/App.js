@@ -10,12 +10,13 @@ import Chat from "./pages/Chat";
 import PrivateRoutes from "./app/utils/PrivateRoutes";
 
 import "./App.css";
-import { useStateContext } from "./contexts/ContextProvider";
+// import { useStateContext } from "./contexts/ContextProvider";
 
 const App = () => {
-  const { authToken } = useStateContext();
+  // const { authToken } = useStateContext();
+  const user = JSON.parse(localStorage.getItem("profile"));
+  const authToken = user?.token;
 
-  // const user = JSON.parse(localStorage.getItem("profile"));
   // const dispatch = useDispatch();
 
   // const logout = () => {

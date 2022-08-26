@@ -39,13 +39,15 @@ const Navbar = () => {
     isClicked,
     setScreenSize,
     screenSize,
-    authToken,
+    // authToken,
     // setAuthToken,
-    userName,
+    // userName,
     // setUserName,
   } = useStateContext();
 
-  // const user = JSON.parse(localStorage.getItem("profile"));
+  const user = JSON.parse(localStorage.getItem("profile"));
+  const authToken = user?.token;
+  const userName = user?.result?.name;
   // const dispatch = useDispatch();
   // const location = useLocation();
 
@@ -97,6 +99,7 @@ const Navbar = () => {
           color={currentColor}
           icon={<RiNotification3Line />}
         />
+
         {!authToken ? (
           <div className="flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg">
             <Link to="login">Login</Link>

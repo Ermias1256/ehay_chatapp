@@ -5,6 +5,7 @@ import { FiSettings } from "react-icons/fi";
 
 import { Navbar, Sidebar, ThemeSettings } from "../components";
 import { useStateContext } from "../contexts/ContextProvider";
+import Login from "./Login";
 
 const Layout = () => {
   const {
@@ -14,6 +15,9 @@ const Layout = () => {
     currentColor,
     currentMode,
   } = useStateContext();
+
+  const user = JSON.parse(localStorage.getItem("profile"));
+  const authToken = user?.token;
 
   return (
     <div className={currentMode === "Dark" ? "dark" : ""}>
@@ -34,7 +38,6 @@ const Layout = () => {
           {/* if the user clicks the theme settings button - display it */}
           {themeSettings && <ThemeSettings />}
         </div>
-
         {/* SIDEBAR */}
         {/* if user click to show sidemenu then show else hide */}
         {activeMenu ? (
@@ -46,7 +49,6 @@ const Layout = () => {
             <Sidebar />
           </div>
         )}
-
         {/* NAVBAR */}
         <div
           className={
@@ -59,7 +61,7 @@ const Layout = () => {
           <div className="sticky md:static bg-main-bg dark:bg-main-dark-bg navbar w-full">
             <Navbar />
           </div>
-          <Outlet />
+          {!authToken ? <Login /> : <Outlet />}
         </div>
       </div>
     </div>
