@@ -1,4 +1,5 @@
 import React from "react";
+import { Avatar } from ".";
 // import avatar from "../assets/avatar.jpg";
 const Message = ({ message, id }) => {
   const own =
@@ -6,9 +7,7 @@ const Message = ({ message, id }) => {
 
   return (
     <div className={`mb-3 gap-3 p-3 flex items-center `}>
-      <div className="inline-flex items-center justify-center w-8 h-8 text-xl text-white bg-indigo-500 rounded-full">
-        EB
-      </div>
+      <Avatar />
       {/* <img className="rounded-full w-8 h-8" src={avatar} alt="user-profile" /> */}
       <p className={`p-1 rounded-lg bg-blue-400 text-white max-w-sm ${own}`}>
         {message.messageText}

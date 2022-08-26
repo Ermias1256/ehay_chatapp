@@ -1,7 +1,7 @@
 # Backend
 
-![MERN backend development- Organization of files and folders to be used for this app](https://user-images.githubusercontent.com/86598202/183109842-b128eb7c-e4ec-4a4e-9191-587de526da26.PNG)
+![MERN backend development- Organization of files and folders to be used for this app](https://user-images.githubusercontent.com/86598202/186885613-fd35ce41-0f3d-4f37-b257-31adf5171b65.PNG)
 
 # Frontend
 
-![MERN backend development- Organization of files and folders to be used for this app](https://user-images.githubusercontent.com/86598202/186592355-c7d0d646-4d36-499f-a117-9053fd59623f.PNG)
+![MERN backend development- Organization of files and folders to be used for this app](https://user-images.githubusercontent.com/86598202/186885319-e1f205ad-7d4d-467b-90b4-949fd4d44cd2.PNG)

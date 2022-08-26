@@ -3,7 +3,8 @@ import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 import { useStateContext } from "../contexts/ContextProvider";
-import avatar from "../assets/avatar2.jpg";
+// import avatar from "../assets/avatar2.jpg";
+import { Avatar } from ".";
 
 const Friends = () => {
   const { friends: userFriends } = useSelector((state) => state.message);
@@ -34,11 +35,7 @@ const Friends = () => {
             })}
             className={({ isActive }) => (isActive ? activeLink : normalLink)}
           >
-            <img
-              className="rounded-full w-8 h-8"
-              src={avatar}
-              alt="user-profile"
-            />
+            <Avatar />
             <span className="capitalize ">{friend.name}</span>
           </NavLink>
         ))

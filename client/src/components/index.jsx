@@ -10,3 +10,4 @@ export { default as Friend } from "./Friend";
 export { default as Messages } from "./Messages";
 export { default as Message } from "./Message";
 export { default as NewMessage } from "./NewMessage";
+export { default as Avatar } from "./Avatar";
