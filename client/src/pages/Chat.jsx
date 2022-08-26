@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -11,8 +11,6 @@ import { Friend, Messages, NewMessage } from "../components";
 const socket = io.connect("https://ehay-chatapp.herokuapp.com");
 
 const Chat = () => {
-  const [isConnected, setIsConnected] = useState(socket.connected);
-
   const newMessageRef = useRef();
 
   const dispatch = useDispatch();
@@ -28,18 +26,10 @@ const Chat = () => {
   const chatWithFriend = userFriends.find((friend) => friend._id === id);
 
   useEffect(() => {
-    socket.on("connect", () => {
-      setIsConnected(true);
-    });
-
     socket.on("receive message", () => {
       dispatch(getUserChats(id, page));
     });
-
-    socket.on("disconnect", () => {
-      setIsConnected(false);
-    });
-  }, []);
+  }, [dispatch, id, page]);
 
   newMessageRef.current?.scrollIntoView({ behavior: "smooth" });
 

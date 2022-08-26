@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { SiShopware } from "react-icons/si";
 import { MdOutlineCancel } from "react-icons/md";
-import { AiOutlineCancel, AiOutlineSearch } from "react-icons/ai";
+// import { AiOutlineCancel, AiOutlineSearch } from "react-icons/ai";
 
 import { useStateContext } from "../contexts/ContextProvider";
 import { Friends } from ".";
@@ -18,7 +18,7 @@ const Sidebar = () => {
 
   useEffect(() => {
     dispatch(getFriends());
-  }, [activeMenu, authToken]);
+  }, [dispatch, activeMenu, authToken]);
 
   const handleCloseSideBar = () => {
     if (activeMenu !== undefined && screenSize <= 900) {

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import decode from "jwt-decode";
+import { Link } from "react-router-dom";
+// import { useDispatch } from "react-redux";
+// import decode from "jwt-decode";
 
 import { AiOutlineMenu } from "react-icons/ai";
 
@@ -12,7 +12,7 @@ import avatar from "../assets/avatar.jpg";
 import { Notification, UserProfile } from ".";
 import { useStateContext } from "../contexts/ContextProvider";
 
-const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
+const NavButton = ({ customFunc, icon, color, dotColor }) => (
   <div>
     <button
       type="button"
@@ -39,32 +39,28 @@ const Navbar = () => {
     setScreenSize,
     screenSize,
     authToken,
-    setAuthToken,
+    // setAuthToken,
     userName,
-    setUserName,
+    // setUserName,
   } = useStateContext();
 
-  const user = JSON.parse(localStorage.getItem("profile"));
-  const dispatch = useDispatch();
-  const location = useLocation();
+  // const user = JSON.parse(localStorage.getItem("profile"));
+  // const dispatch = useDispatch();
+  // const location = useLocation();
 
-  const logout = () => {
-    dispatch({ type: "LOGOUT" });
-    setAuthToken(null);
-  };
-
-  useEffect(() => {
-    setAuthToken(user?.token);
-    setUserName(user?.result?.name);
-    // JWT ...
-    if (authToken) {
-      console.log("expiry check");
-      const decodedToken = decode(authToken);
-      if (decodedToken.exp * 1000 < new Date().getTime()) {
-        logout();
-      }
-    }
-  }, [location]);
+  // useEffect(() => {
+  //   setAuthToken(user?.token);
+  //   setUserName(user?.result?.name);
+  //   // JWT ...
+  //   if (authToken) {
+  //     console.log("expiry check");
+  //     const decodedToken = decode(authToken);
+  //     if (decodedToken.exp * 1000 < new Date().getTime()) {
+  //       dispatch({ type: "LOGOUT" });
+  //       setAuthToken(null);
+  //     }
+  //   }
+  // }, [location]);
 
   useEffect(() => {
     const handleResize = () => setScreenSize(window.innerWidth);
@@ -72,7 +68,7 @@ const Navbar = () => {
     handleResize();
 
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [setScreenSize]);
 
   useEffect(() => {
     if (screenSize <= 900) {
@@ -80,7 +76,7 @@ const Navbar = () => {
     } else {
       setActiveMenu(true);
     }
-  }, [screenSize]);
+  }, [screenSize, setActiveMenu]);
 
   const handleActiveMenu = () => setActiveMenu(!activeMenu);
 

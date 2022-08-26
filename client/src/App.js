@@ -33,7 +33,7 @@ const App = () => {
         logout();
       }
     }
-  }, []);
+  }, [authToken]);
 
   return (
     <div>
