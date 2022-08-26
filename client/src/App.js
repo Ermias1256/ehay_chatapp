@@ -14,6 +14,7 @@ import { useStateContext } from "./contexts/ContextProvider";
 
 const App = () => {
   const { authToken } = useStateContext();
+
   // const user = JSON.parse(localStorage.getItem("profile"));
   // const dispatch = useDispatch();
 

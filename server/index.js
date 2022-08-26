@@ -25,17 +25,23 @@ app.use("/room", roomRoutes);
 app.use("/message", messageRoutes);
 
 const PORT = process.env.PORT || 5000;
+const CONNECTION_URL = process.env.LOCAL
+  ? process.env.CONNECTION_URL_LOCAL
+  : CONNECTION_URL;
+const CLIENT_APP = process.env.LOCAL
+  ? process.env.CLIENT_APP_LOCAL
+  : CLIENT_APP;
 
 const server = http.createServer(app);
 
 const io = new Server(server, {
-  cors: { origin: process.env.CLIENT_APP, methods: ["GET", "POST"] },
+  cors: { origin: CLIENT_APP, methods: ["GET", "POST"] },
 });
 
 io.on("connection", (socket) => {
   socket.on("join room", (roomId) => {
-    socket.join(roomId);
-    console.log(`User with Id : ${socket.id} joined room: ${roomId}`);
+    if (roomId) socket.join(roomId);
+    // console.log(`User with Id : ${socket.id} joined room: ${roomId}`);
   });
 
   socket.on("send message", (msg) => {
@@ -48,7 +54,7 @@ io.on("connection", (socket) => {
 });
 
 mongoose
-  .connect(process.env.CONNECTION_URL, {
+  .connect(CONNECTION_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })

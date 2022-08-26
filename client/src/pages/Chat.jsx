@@ -7,13 +7,23 @@ import io from "socket.io-client";
 import { getUserChats } from "../app/actions/message";
 
 import { Friend, Messages, NewMessage } from "../components";
+import {
+  REACT_APP_ENDPOINT_BASE_URL_LOCAL,
+  REACT_APP_ENDPOINT_BASE_URL,
+  REACT_APP_LOCAL,
+} from "../app/utils/constants";
 
-const socket = io.connect("https://ehay-chatapp.herokuapp.com");
+const ENDPOINT_BASE_URL = REACT_APP_LOCAL
+  ? REACT_APP_ENDPOINT_BASE_URL_LOCAL
+  : REACT_APP_ENDPOINT_BASE_URL;
+
+const socket = io.connect(ENDPOINT_BASE_URL);
 
 const Chat = () => {
   const newMessageRef = useRef();
 
   const dispatch = useDispatch();
+
   const { id } = useParams();
   const page = 0;
 
