@@ -5,9 +5,9 @@ const Message = ({ message, id }) => {
     message?.creator === id ? " ml-2 text-gray-900 bg-gray-300" : " ml-0";
 
   return (
-    <div className={`mb-3 gap-3 p-3 flex items-center ${own}`}>
+    <div className={`mb-3 gap-3 p-3 flex items-center `}>
       <img className="rounded-full w-8 h-8" src={avatar} alt="user-profile" />
-      <p className="p-1 rounded-lg bg-blue-400 text-white max-w-sm">
+      <p className={`p-1 rounded-lg bg-blue-400 text-white max-w-sm ${own}`}>
         {message.messageText}
       </p>
     </div>
